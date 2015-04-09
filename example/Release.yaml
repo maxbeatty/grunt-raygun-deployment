@@ -1,9 +1,0 @@
-version: 6.0.0.0
-ownerName: Jamie Penney
-emailAddress: jamie@example.com
-notes: |
-  # Testing out the rake plugin
-
-  * More markdown formatting
-
-  ### Jamie

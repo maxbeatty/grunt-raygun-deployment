@@ -1,43 +1,41 @@
-# grunt-raygun-deployment
+# grunt-raygun-deployment [![Build Status](https://secure.travis-ci.org/maxbeatty/grunt-raygun-deployment.png?branch=master)](http://travis-ci.org/maxbeatty/grunt-raygun-deployment) [![Code Climate](https://codeclimate.com/github/maxbeatty/grunt-raygun-deployment/badges/gpa.svg)](https://codeclimate.com/github/maxbeatty/grunt-raygun-deployment) [![Test Coverage](https://codeclimate.com/github/maxbeatty/grunt-raygun-deployment/badges/coverage.svg)](https://codeclimate.com/github/maxbeatty/grunt-raygun-deployment)
 
 This plugin makes it easy to notify Raygun of your deployments using a grunt task.
 
-## Installation
+## Install
 
-First, install the npm package:
+```bash
+npm install maxbeatty/grunt-raygun-deployment --save-dev
+```
 
-    npm install grunt-raygun-deployment --save-dev
+## Use
 
-Then, add the following to `Gruntfile.js`:
+Load the task in your Gruntfile:
 
-    grunt.initConfig({
-        // Configuration to be run (and then tested).
-        raygun_deployment: {
-            options: {
-                // You need to fill this in with your own data
-                raygunApiKey: 'YOUR APPLICATIONS API KEY',
-                raygunAuthToken: 'YOUR EXTERNAL AUTH TOKEN'
-            }
-        }
-    });
+```js
+grunt.loadNpmTasks('grunt-raygun-deployment')
+```
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    
+### Environment Variables
 
-You'll need the Raygun API Key for your application, plus an External Auth Token which you can generate [here](https://app.raygun.io/user).
+#### RAYGUN_DEPLOY_KEY
 
-Finally, create a release file. We default to checking `Release.yml`, but you can set this path with the `release` option.
+`RAYGUN_DEPLOY_KEY` should be set to your Raygun API Key from "Application Settings".
 
-This is an example release file:
+#### RAYGUN_DEPLOY_TOKEN
 
-    version: 6.0.0.0
-    ownerName: Jamie Penney
-    emailAddress: jamie@example.com
-    notes: |
-        # Testing out the rake plugin
+`RAYGUN_DEPLOY_TOKEN` should be set to your External Auth Token from ["My Settings"](https://app.raygun.io/user).
 
-        * More markdown formatting
+```bash
+RAYGUN_DEPLOY_KEY=fR0mApp RAYGUN_DEPLOY_TOKEN=uS3r grunt raygun-deployment
+```
 
-        ### Jamie
+_You could use something like [dotenv](https://www.npmjs.com/package/dotenv) in your Gruntfile to avoid specifying environment variables before calling `grunt`._
 
-Once you've written this to `Releases.yml`, run `grunt raygun_deployment` and your deployment will be sent to Raygun!
+## Fork Differences
+
+- no yaml file declaring release details
+- no declaring sensitive information in your Gruntfile
+- convention of using latest git tag for `version`
+- convention of using latest git tag commit for `scmIdentifier`
+- not setting any other deployment fields
