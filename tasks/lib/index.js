@@ -7,13 +7,14 @@ var grunt = require("grunt");
 
 module.exports = {
   registerWithGrunt: function (gruntRunner) {
-    var self = this;
+    var run = this.run.bind(this);
+
     gruntRunner.registerTask(
       "raygun-deployment",
       "Grunt plugin for generating Deployment information for Raygun.io",
       function () {
         // this is grunt.task
-        self.run(this);
+        run(this);
       }
     );
   },

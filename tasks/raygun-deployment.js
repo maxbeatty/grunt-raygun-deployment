@@ -1,2 +1,3 @@
 "use strict";
-module.exports = require("./lib/").registerWithGrunt;
+var lib = require("./lib/");
+module.exports = lib.registerWithGrunt.bind(lib);
