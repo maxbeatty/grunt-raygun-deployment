@@ -150,6 +150,17 @@ lab.experiment("raygun-deployment lib", function() {
       assert(gruntStub.fatal.calledWithExactly(testErr));
       done();
     });
+
+    lab.test("fatals if no response from command", function(done) {
+      childProcessStub.exec.callsArgWith(1, null, " ");
+
+      task.exec("ls", function() {
+        done(new Error("failed to fatal"));
+      });
+
+      assert(gruntStub.fatal.calledWith(sinon.match.instanceOf(Error)));
+      done();
+    });
   });
 
   lab.experiment("getTag", function() {

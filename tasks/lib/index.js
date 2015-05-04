@@ -46,7 +46,14 @@ module.exports = {
         return;
       }
 
-      cb(stdout.trim());
+      var res = stdout.trim();
+
+      if (res.length === 0) {
+        grunt.fatal(new Error("No response from: " + cmd));
+        return;
+      }
+
+      cb(res);
     });
   },
   getTag: function(cb) {

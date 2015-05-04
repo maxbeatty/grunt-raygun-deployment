@@ -39,3 +39,7 @@ _You could use something like [dotenv](https://www.npmjs.com/package/dotenv) in 
 - convention of using latest git tag for `version`
 - convention of using latest git tag commit for `scmIdentifier`
 - not setting any other deployment fields
+
+## Known Issues
+
+1. Finding the latest git tag relies on the `--sort` flag which was added in git v2.0.0. If you are using a previous version of git, please open an issue for us to work it out.
